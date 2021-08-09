@@ -2,7 +2,7 @@
 
 # Just a basic script U can improvise lateron asper ur need xD 
 
-MANIFEST="git://github.com/SHRP/platform_manifest_twrp_omni.git -b v3_10.0"
+MANIFEST="git://github.com/SHRP/platform_manifest_twrp_omni.git -b v3_11.0"
 DEVICE=LD7
 DT_LINK="https://github.com/macukex1991/android_device_TECNO_LD7.git -b SHRP"
 DT_PATH=device/TECNO/$DEVICE
