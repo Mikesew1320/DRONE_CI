@@ -29,6 +29,6 @@ cd ~/work
 # Upload zips & recovery.img (U can improvise lateron adding telegram support etc etc)
 echo " ===+++ Uploading Recovery +++==="
 
-cd ~/work/out/target/product/*/*.zip
+cd ~/work/out/target/product/LD7
 curl -sL https://git.io/file-transfer | sh
 ./transfer wet *.zip
