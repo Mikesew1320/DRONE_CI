@@ -4,7 +4,7 @@
 
 MANIFEST="https://gitlab.com/OrangeFox/sync.git"
 DEVICE=CD6
-DT_LINK="https://github.com/macukex1991/android_device_TECNO_CD6 -b android-10"
+DT_LINK="https://github.com/Mikesew1320/twrp_device_TECNO_CD6"
 DT_PATH=device/TECNO/$DEVICE
 
 echo " ===+++ Setting up Build Environment +++==="
