@@ -1,4 +1,4 @@
-name: Building OrangeFox recovery
+name: Building recovery
 
 on:
 #  release:
@@ -16,14 +16,14 @@ on:
     types: [started]
 
 env:
-  DEVICE: CD6
+  MANIFEST: https://gitlab.com/OrangeFox/sync.git
+  DEVICE: C6
   DT_LINK: https://github.com/Mikesew1320/twrp_device_TECNO_CD6
   DT_PATH: device/TECNO/CD6
   CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
   BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
   TARGET: recoveryimage
-  FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER: 1
-  TZ: Asia/Kolkata
+  TZ: Asia/Manila
 
 jobs:
   build:
@@ -38,53 +38,31 @@ jobs:
             sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
             docker rmi `docker images -q`
             sudo apt-get remove account-plugin-facebook account-plugin-flickr account-plugin-jabber account-plugin-salut account-plugin-twitter account-plugin-windows-live account-plugin-yahoo aisleriot brltty duplicity empathy empathy-common example-content gnome-accessibility-themes gnome-contacts gnome-mahjongg gnome-mines gnome-orca gnome-screensaver gnome-sudoku gnome-video-effects gnomine landscape-common libreoffice-avmedia-backend-gstreamer libreoffice-base-core libreoffice-calc libreoffice-common libreoffice-core libreoffice-draw libreoffice-gnome libreoffice-gtk libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport libreoffice-style-galaxy libreoffice-style-human libreoffice-writer libsane libsane-common mcp-account-manager-uoa python3-uno rhythmbox rhythmbox-plugins rhythmbox-plugin-zeitgeist sane-utils shotwell shotwell-common telepathy-gabble telepathy-haze telepathy-idle telepathy-indicator telepathy-logger telepathy-mission-control-5 telepathy-salut totem totem-common totem-plugins printer-driver-brlaser printer-driver-foo2zjs printer-driver-foo2zjs-common printer-driver-m2300w printer-driver-ptouch printer-driver-splix
-            git config --global user.name "Mikesew1320"
-            git config --global user.email "mikesew1320@gmail.com"         
+            git config --global user.name "macukex1991"
+            git config --global user.email "leexaoran1991@gmail.com"         
             sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php* 
             sudo -E apt-get clean 
             sudo -E apt-get -qq update
-            sudo apt install git aria2 -y
-            git clone https://gitlab.com/OrangeFox/misc/scripts &&cd scripts
-            sudo bash setup/android_build_env.sh
-            sudo bash setup/install_android_sdk.sh
+            sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev repo rsync flex curl  bison aria2
+            sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
+            sudo chmod a+rx /usr/local/bin/repo
             
-       - name: Sync OrangeFox recovery source and device tree
+       - name: Sync recovery source and device tree
          run: |
-             mkdir ~/OrangeFox_10
-             cd ~/OrangeFox_10
-             git clone https://gitlab.com/OrangeFox/sync.git
-             cd ~/OrangeFox_10/sync
-             echo 'y' | ./get_fox_10.sh ~/OrangeFox_10/fox_10.0
-             cd ~/OrangeFox_10/fox_10.0
-             git clone $DT_LINK $DT_PATH
+             git clone $MANIFEST k
+             cd k
+             ./get_fox_10.sh ~/work
+             cd ~/work
+             git clone $DT_LINK --depth=1 --single-branch $DT_PATH
              
-       - name: Building OrangeFox Recovery
+       - name: Building TWRP
          run: |
-              cd ~/OrangeFox_10/fox_10.0
-              source build/envsetup.sh
-              export ALLOW_MISSING_DEPENDENCIES=true 
-              export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1 
-              export LC_ALL="C"
-              lunch omni_$DEVICE-eng &&mka recoveryimage
-       - name: Uploading recovery image
+              cd ~/work
+              . build/envsetup.sh &&lunch omni_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
+ 
+  - name: Uploading recovery image
          run: |
-              cd ~/OrangeFox_10/fox_10.0/out/target/product/CD6
-          #    curl -F chat_id=$CHAT_ID -F document=@OrangeFox-v11.1CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
-              sudo zip -r9 OrangeFox-v11.1-CD6.zip recovery.img
-            #  curl -F chat_id=$CHAT_ID -F document=@OrangeFox-v11.1-CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+              cd work/out/target/product/$DEVICE
               curl -sL https://git.io/file-transfer | sh
-              ./transfer wet OrangeFox-v11.1-CD6.zip
-              ./transfer wet OrangeFox-v11.1-CD6.img
+              ./transfer wet recovery.img
               ./transfer wet *.zip
-
-      - name: Upload Release
-          uses: softprops/action-gh-release@v1
-           with:
-           files: |
-             work/out/target/product/*/*.img
-             work/out/target/product/*/*.zip
-           name: OrangeFox-v11.1-CD6-${{ github.run_id }}
-           tag_name: CD6-SHRP-${{ steps.info.outputs.date }}
-           body: SHRP for CD6 build at ${{ steps.info.outputs.date }}
-         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
