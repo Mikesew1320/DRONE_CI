@@ -53,13 +53,11 @@ jobs:
              cd k
              ./get_fox_10.sh ~/work
              cd ~/work
-             git clone $DT_LINK --depth=1 --single-branch $DT_PATH
-             
+             git clone $DT_LINK --depth=1 --single-branch $DT_PATH          
        - name: Building TWRP
          run: |
               cd ~/work
               . build/envsetup.sh &&lunch omni_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
- 
   - name: Uploading recovery image
          run: |
               cd work/out/target/product/$DEVICE
