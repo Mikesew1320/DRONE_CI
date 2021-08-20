@@ -57,10 +57,11 @@ jobs:
        - name: Building TWRP
          run: |
               cd ~/work
-              . build/envsetup.sh &&lunch omni_$DEVICE-eng && mka $TARGET
+              . build/envsetup.sh &&lunch omni_$DEVICE-eng
+      mka recoveryimage
   - name: Uploading recovery image
          run: |
               cd work/out/target/product/$DEVICE
-              curl -sL https://git.io/file-transfer | sh
+             curl -sL https://git.io/file-transfer | sh
               ./transfer wet recovery.img
               ./transfer wet *.zip
