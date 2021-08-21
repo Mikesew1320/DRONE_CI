@@ -2,9 +2,9 @@
 
 # Just a basic script U can improvise lateron asper ur need xD 
 
-MANIFEST="git://github.com/SHRP/platform_manifest_twrp_omni.git -b v3_10.0"
+MANIFEST="git://gitlab.com/OrangeFoxRecovery/fox_10.0/manifest.git"
 DEVICE=CD6
-DT_LINK="https://github.com/Mikesew1320/TECNO-CD6-SHRP"
+DT_LINK="https://github.com/Mikesew1320/CD6_OFOX"
 DT_PATH=device/TECNO/$DEVICE
 
 echo " ===+++ Setting up Build Environment +++==="
