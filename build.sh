@@ -2,7 +2,7 @@
 
 # Just a basic script U can improvise lateron asper ur need xD 
 
-MANIFEST="git://gitlab.com/OrangeFoxRecovery/fox_10.0/manifest.git"
+MANIFEST="https://gitlab.com/OrangeFoxRecovery/fox_10.0/manifest.git"
 DEVICE=CD6
 DT_LINK="https://github.com/Mikesew1320/CD6_OFOX"
 DT_PATH=device/TECNO/$DEVICE
