@@ -24,7 +24,7 @@ echo " ===+++ Building Recovery +++==="
 export ALLOW_MISSING_DEPENDENCIES=true
 lunch omni_${DEVICE}-eng || abort " lunch failed with exit status $?"
 echo " lunch twrp_${DEVICE}-eng done"
-mka recoveryimage
+mka recoveryimage || abort " mka failed with exit status $?"
 echo " mka recoveryimage done"
 
 # Upload zips & recovery.img (U can improvise lateron adding telegram support etc etc)
