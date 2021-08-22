@@ -2,7 +2,7 @@
 
 # Just a basic script U can improvise lateron asper ur need xD 
 
-MANIFEST="https://gitlab.com/OrangeFoxRecovery/fox_10.0/manifest.git"
+MANIFEST="git://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-10.0"
 DEVICE=CD6
 DT_LINK="https://github.com/Mikesew1320/twrp_device_TECNO_CD6"
 DT_PATH=device/TECNO/$DEVICE
