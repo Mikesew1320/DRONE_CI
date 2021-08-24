@@ -4,7 +4,7 @@
 
 MANIFEST="https://gitlab.com/OrangeFoxRecovery/fox_10.0/manifest.git"
 DEVICE=CD6
-DT_LINK="https://github.com/Mikesew1320/CD6_OFOX"
+DT_LINK="https://github.com/Mikesew1320/TECNO-CD6-OFRP-Tree"
 DT_PATH=device/TECNO/$DEVICE
 
 echo " ===+++ Setting up Build Environment +++==="
@@ -30,7 +30,7 @@ echo " mka recoveryimage done"
 # Upload zips & recovery.img (U can improvise lateron adding telegram support etc etc)
 echo " ===+++ Uploading Recovery +++==="
 version=$(cat bootable/recovery/variables.h | grep "define TW_MAIN_VERSION_STR" | cut -d \" -f2)
-OUTFILE=SHRP-3.1-${DEVICE}-$(date "+%Y%m%d-%I%M").zip
+OUTFILE=OFRP-11.1-${DEVICE}-$(date "+%Y%m%d-%I%M").zip
 
 cd out/target/product/$DEVICE
 curl -sL https://git.io/file-transfer | sh
