@@ -4,7 +4,7 @@
 
 MANIFEST="git://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-10.0"
 DEVICE=CD6
-DT_LINK="https://github.com/PitchBlackRecoveryDevices/android_device_TECNO_CD6-pbrp"
+DT_LINK="https://github.com/Mikesew1320/TECNO-CD6-PBRP-Tree"
 DT_PATH=device/TECNO/$DEVICE
 
 echo " ===+++ Setting up Build Environment +++==="
