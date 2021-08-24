@@ -4,7 +4,7 @@
 
 MANIFEST="https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni -b twrp-10.0"
 DEVICE=LD7
-DT_LINK="https://github.com/macukex1991/Tecno-LD7-TWRP"
+DT_LINK="https://github.com/Mikesew1320/TECNO-CD6-SHRP-Tree"
 DT_PATH=device/TECNO/$DEVICE
 
 echo " ===+++ Setting up Build Environment +++==="
