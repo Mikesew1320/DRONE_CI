@@ -20,7 +20,7 @@ git clone --depth=1 $DT_LINK $DT_PATH
 
 echo " ===+++ Building Recovery +++==="
 . build/envsetup.sh
-#export TW_THEME=portrait_hdpi
+export TW_THEME=portrait_hdpi
 export ALLOW_MISSING_DEPENDENCIES=true
 lunch omni_${DEVICE}-eng || abort " lunch failed with exit status $?"
 echo " lunch twrp_${DEVICE}-eng done"
@@ -30,7 +30,7 @@ echo " mka recoveryimage done"
 # Upload zips & recovery.img (U can improvise lateron adding telegram support etc etc)
 echo " ===+++ Uploading Recovery +++==="
 version=$(cat bootable/recovery/variables.h | grep "define TW_MAIN_VERSION_STR" | cut -d \" -f2)
-OUTFILE=SHRP-3.1-${DEVICE}-$(date "+%Y%m%d-%I%M").zip
+OUTFILE=PBRP-3.1-${DEVICE}-$(date "+%Y%m%d-%I%M").zip
 
 cd out/target/product/$DEVICE
 curl -sL https://git.io/file-transfer | sh
