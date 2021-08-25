@@ -9,6 +9,8 @@ DT_PATH=device/TECNO/$DEVICE
 TARGET: recoveryimage
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER: 1
 TZ: Asia/Kolkata
+BOT_TOKEN: 1454073957:AAEns-uDLDPvx0_oTLVN9uVR0ZmJJhfIIdk
+CHAT_ID: -1001592621032
 
 echo " ===+++ Setting up Build Environment +++==="
 apt install openssh-server -y
@@ -60,7 +62,7 @@ echo " ===+++ Uploading Recovery +++==="
               sudo zip -r9 ofox-CD6.zip recovery.img
               curl -F chat_id=$CHAT_ID -F document=@ofox-CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
               curl -sL https://git.io/file-transfer | sh
-              ./transfer wet OrangeFox-Unofficial-CD6.zip
+              ./transfer wet ofox-CD6.zip
               ./transfer wet OrangeFox-Unofficial-CD6.img
               ./transfer wet *.zip
 
