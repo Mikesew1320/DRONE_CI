@@ -41,9 +41,9 @@ git clone --depth=1 $DT_LINK $DT_PATH
              echo 'y' | ./get_fox_10.sh ~/OrangeFox_10/fox_10.0
              cd ~/OrangeFox_10/fox_10.0
              git clone $DT_LINK $DT_PATH
-             cd ~/OrangeFox_10/vendor/recovery
-             git fetch https://gitlab.com/Yillie/vendor_recovery fox_10.0
-             git cherry-pick 8212a5516cf9dece1f93cb3cafb6bcd69d261f7e
+             #cd ~/OrangeFox_10/vendor/recovery
+             #git fetch https://gitlab.com/Yillie/vendor_recovery fox_10.0
+             #git cherry-pick 8212a5516cf9dece1f93cb3cafb6bcd69d261f7e
              
 echo " ===+++ Building Recovery +++==="
 . build/envsetup.sh
