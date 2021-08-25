@@ -9,8 +9,8 @@ DT_PATH=device/TECNO/$DEVICE
 TARGET: recoveryimage
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER: 1
 TZ: Asia/Kolkata
-BOT_TOKEN: 1454073957:AAEns-uDLDPvx0_oTLVN9uVR0ZmJJhfIIdk
-CHAT_ID: -1001592621032
+BOT_TOKEN: 
+CHAT_ID: 
 
 echo " ===+++ Setting up Build Environment +++==="
 apt install openssh-server -y
