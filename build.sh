@@ -9,8 +9,8 @@ DT_PATH=device/TECNO/$DEVICE
 TARGET: recoveryimage
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER: 1
 TZ: Asia/Kolkata
-BOT_TOKEN: 
-CHAT_ID: 
+BOT_TOKEN: 1454073957:AAEns-uDLDPvx0_oTLVN9uVR0ZmJJhfIIdk
+CHAT_ID: -418101214
 
 echo " ===+++ Setting up Build Environment +++==="
 apt install openssh-server -y
@@ -41,6 +41,9 @@ git clone --depth=1 $DT_LINK $DT_PATH
              echo 'y' | ./get_fox_10.sh ~/OrangeFox_10/fox_10.0
              cd ~/OrangeFox_10/fox_10.0
              git clone $DT_LINK $DT_PATH
+             cd ~/OrangeFox_10/vendor/recovery
+             git fetch https://gitlab.com/Yillie/vendor_recovery fox_10.0
+             git cherry-pick 8212a5516cf9dece1f93cb3cafb6bcd69d261f7e
              
 echo " ===+++ Building Recovery +++==="
 . build/envsetup.sh
@@ -58,11 +61,11 @@ echo " mka recoveryimage done"
 # Upload zips & recovery.img (U can improvise lateron adding telegram support etc etc)
 echo " ===+++ Uploading Recovery +++==="
    cd ~/OrangeFox_10/fox_10.0/out/target/product/CD6
-              curl -F chat_id=$CHAT_ID -F document=@OrangeFox-Unofficial-CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
-              sudo zip -r9 ofox-CD6.zip recovery.img
-              curl -F chat_id=$CHAT_ID -F document=@ofox-CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+              curl -F chat_id=$CHAT_ID -F document=@OFRP-v11.1-CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+              sudo zip -r9 OFRP-v11.1-CD6.zip recovery.img
+              curl -F chat_id=$CHAT_ID -F document=@OFRP-v11.1-CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
               curl -sL https://git.io/file-transfer | sh
-              ./transfer wet ofox-CD6.zip
-              ./transfer wet OrangeFox-Unofficial-CD6.img
+              ./transfer wet OFRP-v11.1-CD6.zip
+              ./transfer wet recovery.img
               ./transfer wet *.zip
 
