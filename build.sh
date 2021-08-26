@@ -63,9 +63,12 @@ echo " ===+++ Uploading Recovery +++==="
    cd ~/OrangeFox_10/fox_10.0/out/target/product/CD6
               curl -F chat_id=$CHAT_ID -F document=@OFRP-v11.1-CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
               sudo zip -r9 OFRP-v11.1-CD6.zip recovery.img
+              version=$(cat bootable/recovery/variables.h | grep "define TW_MAIN_VERSION_STR" | cut -d \" -f2)
+              OUTFILE=OFRP-${version}-${DEVICE}-$(date "+%Y%m%d-%I%M").zip
               curl -F chat_id=$CHAT_ID -F document=@OFRP-v11.1-CD6.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument
               curl -sL https://git.io/file-transfer | sh
               ./transfer wet OFRP-v11.1-CD6.zip
+              curl -T $OUTFILE https://oshi.at
               ./transfer wet recovery.img
               ./transfer wet *.zip
 
