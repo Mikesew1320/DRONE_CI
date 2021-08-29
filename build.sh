@@ -4,7 +4,7 @@
 
 MANIFEST="https://gitlab.com/OrangeFoxRecovery/fox_10.0/manifest.git"
 DEVICE=CD6
-DT_LINK="https://github.com/Mikesew1320/OFOX-HELLO"
+DT_LINK="https://github.com/Mikesew1320/TECNO-CD6-OFRP-Tree"
 DT_PATH=device/TECNO/$DEVICE
 TARGET: recoveryimage
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER: 1
